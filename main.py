@@ -11,4 +11,4 @@ async def read_root():
 Base.metadata.create_all(bind=engine)
 
 
-app.include_router(router, prefix="/api/", tags=["Wallet Operations"])
+app.include_router(router, prefix="/api", tags=["Wallet Operations"])
