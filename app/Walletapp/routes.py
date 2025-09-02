@@ -31,7 +31,7 @@ async def create_wallet(wallet_details :  WalletCreate , db : Session = Depends(
 async def get_wallet_by_user_id(user_id : int , db : Session = Depends(get_db)) :
     return await WalletService.get_wallet_by_user_id(db , user_id)
 
-@router.put("edit/wallet/{wallet_id}" , response_model=WalletInDB)
+@router.put("/edit/wallet/{wallet_id}" , response_model=WalletInDB)
 async def update_wallet(wallet_id : int , wallet_data : WalletUpdate ,  db : Session = Depends(get_db)) :
     return await WalletService.update_wallet_amount(db , wallet_id , wallet_data)
 
