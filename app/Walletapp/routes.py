@@ -31,7 +31,7 @@ async def create_wallet(wallet_details :  WalletCreate , db : Session = Depends(
 async def get_wallet_by_user_id(user_id : int , db : Session = Depends(get_db)) :
     return await WalletService.get_wallet_by_user_id(db , user_id)
 
-@router.put("/wallet/{wallet_id}" , response_model=WalletInDB)
+@router.put("edit/wallet/{wallet_id}" , response_model=WalletInDB)
 async def update_wallet(wallet_id : int , wallet_data : WalletUpdate ,  db : Session = Depends(get_db)) :
     return await WalletService.update_wallet_amount(db , wallet_id , wallet_data)
 
@@ -42,7 +42,7 @@ async def update_wallet(wallet_id : int , wallet_data : WalletUpdate ,  db : Ses
 async def create_transaction(transaction_data :  TransactionCreate , db : Session = Depends(get_db)) :
     return await TransactionService.create_transaction(db , transaction_data)
 
-@router.get("/all-transactions/" , status_code=status.HTTP_201_CREATED , response_model=List[TransactionHistory])
+@router.get("/fetch-transactions/" , status_code=status.HTTP_201_CREATED , response_model=List[TransactionHistory])
 async def all_transactions(user_id : int , db : Session = Depends(get_db)) :
     query =  await TransactionService.get_all_transaction_by_user_id(db=db, user_id=user_id)
 
